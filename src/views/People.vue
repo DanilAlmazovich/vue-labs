@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-header/>
-    <content :data="people"/>
+    <content :data="people" type="people"/>
   </div>
 </template>
 <script>
@@ -19,7 +19,7 @@ export default {
     async getData() {
       const response = await fetch('https://api.tvmaze.com/people')
       const data = await response.json()
-      this.people = data
+      this.people = data.filter(item => item.id <= 50)
     }
   },
   mounted() {

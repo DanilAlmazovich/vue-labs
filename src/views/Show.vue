@@ -1,29 +1,41 @@
 <template>
   <div>
     <v-header/>
-    <content :data="show"/>
+    <div class="person" v-if="show">
+      <img :src="show?.image?.original" alt="">
+      <p>{{ show.name }}</p>
+<!--      <p v-if="person.country">country - {{person?.country?.name}}</p>-->
+<!--      <p>{{person?.birthday}}</p>-->
+    </div>
   </div>
 </template>
 <script>
-import Content from '@/components/Content.vue'
 export default {
   data() {
     return {
-      show: []
+      show: null
     }
-  },
-  components: {
-    content: Content
   },
   methods: {
     async getData() {
-      const response = await fetch('https://api.tvmaze.com/shows')
-      const data = await response.json()
-      this.show = data
+      const response = await fetch(`https://api.tvmaze.com/shows/${this.$route.params.id}`)
+      this.show = await response.json()
     }
   },
   mounted() {
     this.getData()
-  }
+    console.log(this.$route.params.id)
+  },
 }
 </script>
+<style lang="css" scoped>
+.person {
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.person img {
+  width: 60%;
+}
+</style>

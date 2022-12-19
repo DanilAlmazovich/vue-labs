@@ -1,7 +1,7 @@
 <template>
   <div v-if="data.length" class="content">
     <div v-for="person in data">
-      <router-link v-if="person.image"  :to="`/people/${person.id}`"  >
+      <router-link v-if="person.image"  :to="`/${type}/${person.id}`"  >
         <div></div>
         <div>
           <img :src="person?.image?.medium" alt="">
@@ -17,6 +17,10 @@ export default {
     data: {
       type: Array,
       default: []
+    },
+    type: {
+      type: String,
+      default: ''
     }
   }
 }
