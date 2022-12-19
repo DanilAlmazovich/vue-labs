@@ -33,6 +33,7 @@ header {
   justify-content: space-between;
   padding: 20px 10px;
   border-bottom: 1px solid #595959;
+  background: seashell;
 }
 header a {
   margin: 0 10px;
